@@ -29,6 +29,14 @@ dependencies {
 task wrapper(type: Wrapper) {
         gradleVersion = '1.6'
 }
+/*********************************
+ * enable Xlint:unchecked for the compiler with -PXlint on the commandline
+ *********************************/
+if(hasProperty('Xlint')){
+  tasks.withType(Compile){
+    options.compilerArgs.add('-Xlint:unchecked')
+  }
+}
 
 //*********************************************************
 // Below:
