@@ -27,18 +27,19 @@ dependencies {
 // wrapper allows running without gradle being installed
 // ./gradlew [task]
 task wrapper(type: Wrapper) {
-        gradleVersion = '1.1'
+        gradleVersion = '1.6'
 }
 
 //*********************************************************
 // Below:
 // Example tasks that may be useful
 //********************************************************
-
 // initialize a project with the standard layout taking into account plugins
 task createDirs << {
-    sourceSets*.allSource.srcDirs*.each { it.mkdirs() }
-    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+    sourceSets*.allSource.srcDirs*.each{ dir ->
+        dir.mkdirs()
+        new File(dir, '.gitignore').createNewFile()
+    }
 }
 
 // example task that prints configurations in this project
